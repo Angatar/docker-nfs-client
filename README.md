@@ -79,7 +79,7 @@ then you can use NFS to mount all your mountpoints on your host
 Basic command
 `docker run -itd --privileged=true --net=host  -e SERVER=nfs_server_ip -e SHARE=shared_path d3fk/nfs-client`
 
-**It is more convenient to set a volume **
+**It is more convenient to set a volume**
 
 Simply add a volume if you need to share the volume with other containers or mount it directly on your host (take care to add the **:shared** mention on the volume option)
 `docker run -itd --privileged=true --name nfs --net=host -v /mnt/shared_nfs:/mnt/nfs-1:shared -e SERVER=nfs_server_ip -e SHARE=shared_path d3fk/nfs-client`
