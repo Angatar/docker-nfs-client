@@ -38,7 +38,7 @@ The entry script was adapted to be compatible with using this NFS client with da
 
 ### Last evolutions
 
-*The container is now made available as multi-arch image*, build from Docker Hub nodes dedicated to automated builds.
+**The container is now made available as multi-arch image**, build from Docker Hub nodes dedicated to automated builds.
 This multi-arch image will fit most of architectures:
 
 - linux/amd64
@@ -49,9 +49,9 @@ This multi-arch image will fit most of architectures:
 - linux/ppc64le
 - linux/s390x 
 
-As this container is quite widely used [![Docker Pulls](https://badgen.net/docker/pulls/d3fk/nfs-client?icon=docker&label=pulls)](https://hub.docker.com/r/d3fk/nfs-client/tags), we'll remain with NFS3 as default FSTYPE on the historical tag "latest" to avoid to create any anoying breaking issue, but the ENVIRONMENT variables enable you to change easily to NFS 4 or any other filesystem types supported: The filesystem types which are currently supported include adfs, affs, autofs, cifs, coda, coherent, cramfs, debugfs, devpts, efs, ext, ext2, ext3, ext4, hfs, hfsplus, hpfs, iso9660, jfs, minix, msdos, ncpfs, nfs, nfs4, ntfs, proc, qnx4, ramfs, reiserfs, romfs, squashfs, smbfs, sysv, tmpfs, ubifs, udf, ufs, umsdos, usbfs, vfat, xenix, xfs, xiafs.
+As this container is quite widely used [![Docker Pulls](https://badgen.net/docker/pulls/d3fk/nfs-client?icon=docker&label=pulls)](https://hub.docker.com/r/d3fk/nfs-client/tags), **we'll remain with NFS3 as default FSTYPE on the historical tag "latest"** to avoid to create any anoying breaking issue, but the ENVIRONMENT variables enable you to change easily to NFS 4 or any other filesystem types supported: The filesystem types which are currently supported include adfs, affs, autofs, cifs, coda, coherent, cramfs, debugfs, devpts, efs, ext, ext2, ext3, ext4, hfs, hfsplus, hpfs, iso9660, jfs, minix, msdos, ncpfs, nfs, nfs4, ntfs, proc, qnx4, ramfs, reiserfs, romfs, squashfs, smbfs, sysv, tmpfs, ubifs, udf, ufs, umsdos, usbfs, vfat, xenix, xfs, xiafs.
 
-*A new image tag was created "v4" for the users who needed a ready to go nfs4 client without setting ENVIRONMENT variables.*
+**A new image tag was created "v4"** for the users who needed a ready to go nfs4 client without setting additional ENVIRONMENT variables.
 
 ## ENVIRONMENT
 
