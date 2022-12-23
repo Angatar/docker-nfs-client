@@ -1,10 +1,18 @@
-# A small docker NFS client. Perfect for enabling whatever to NFS, compatible with databases (d3fk/nfs-client). 
+[![Docker Pulls](https://badgen.net/docker/pulls/d3fk/nfs-client?icon=docker&label=pulls)](https://hub.docker.com/r/d3fk/nfs-client/tags) [![Docker Image Size](https://badgen.net/docker/size/d3fk/nfs-client/latest?icon=docker&label=image%20size)](https://hub.docker.com/r/d3fk/nfs-client/tags) [![Docker Stars](https://badgen.net/docker/stars/d3fk/nfs-client?icon=docker&label=stars&color=green)](https://hub.docker.com/r/d3fk/nfs-client) [![Docker build](https://img.shields.io/docker/cloud/automated/d3fk/nfs-client?label=build&logo=docker)](https://hub.docker.com/r/d3fk/nfs-client/tags) [![Build status](https://img.shields.io/docker/cloud/build/d3fk/nfs-client?label=build%20status&logo=docker)](https://hub.docker.com/r/d3fk/nfs-client/tags) [![Github Stars](https://img.shields.io/github/stars/Angatar/nfs-client?label=stars&logo=github&color=green)](https://github.com/Angatar/nfs-client) [![Github forks](https://img.shields.io/github/forks/Angatar/nfs-client?logo=github)](https://github.com/Angatar/nfs-client/fork) [![Github open issues](https://img.shields.io/github/issues-raw/Angatar/nfs-client?logo=github&color=yellow)](https://github.com/Angatar/nfs-client/issues) [![Github closed issues](https://img.shields.io/github/issues-closed-raw/Angatar/nfs-client?logo=github&color=green)](https://github.com/Angatar/nfs-client/issues?q=is%3Aissue+is%3Aclosed) [![GitHub license](https://img.shields.io/github/license/Angatar/nfs-client)](https://github.com/Angatar/nfs-client/blob/master/LICENSE)
 
-This is a Docker image for a light NFS client (~10MB) compatible with database usage. By default NFS 3 is used (but the ENV enable you to change this).
+# A small docker NFS client (multi-arch). Perfect for enabling whatever to NFS, compatible with databases (Angatar> d3fk/nfs-client). 
+
+This is a Docker multi-arch image for a light NFS client ([![Docker Image Size](https://badgen.net/docker/size/d3fk/nfs-client/latest?icon=docker&label=compressed)](https://hub.docker.com/r/d3fk/nfs-client/tags)) compatible with database usage.
+
+We provide 2 tags for this image
+- **latest**: which is the historical tag that is set for **NFS 3** by default but the ENV enable you to change easily to **NFS 4** or any other filesystem types supported.
+- **v4**: which is set by default to **NFS 4** as a ready to go nfs4 client.
+
+
 
 ## Docker image
 
-pre-build from Docker hub with "automated build" option.
+pre-build as multi-arch from Docker hub with "automated build" option.
 
 image name **d3fk/nfs-client**
 
@@ -12,20 +20,45 @@ image name **d3fk/nfs-client**
 
 Docker hub repository: https://hub.docker.com/r/d3fk/nfs-client/
 
+### Image TAGS
+
+- **d3fk/nfs-client:latest** which is the default image when using d3fk/nfs-client but is set with nfs3 
+- **d3fk/nfs-client:v4** which is ready to go as nfs4 client.
+
+[![DockerHub Badge](https://lucky-red-wombat.cyclic.app/image/d3fk/nfs-client)](https://hub.docker.com/r/d3fk/nfs-client)
+
 
 ## Origin
 Based on https://github.com/flaccid/docker-nfs-client
 
+### Initial evolutions
 *The image is now built from the original Alpine with automated build.
 Default NFS type modified to NFS3 for local IT requirements. 
 The entry script was adapted to be compatible with using this NFS client with database (mariadb, mysql...) and to permit running the container without setting the SERVER and SHARE env parameters, simply to share on the host's network the NFS client capabilities for mounting any NFS shared path on the host (quite useful with small os)* 
+
+### Last evolutions
+
+*The container is now made available as multi-arch image*, build from Docker Hub nodes dedicated to automated builds.
+This multi-arch image will fit most of architectures:
+
+- linux/amd64
+- linux/386
+- linux/arm/v6
+- linux/arm/v7
+- linux/arm64/v8
+- linux/ppc64le
+- linux/s390x 
+
+As this container is quite widely used [![Docker Pulls](https://badgen.net/docker/pulls/d3fk/nfs-client?icon=docker&label=pulls)](https://hub.docker.com/r/d3fk/nfs-client/tags), we'll remain with NFS3 as default FSTYPE on the historical tag "latest" to avoid to create any anoying breaking issue, but the ENVIRONMENT variables enable you to change easily to NFS 4 or any other filesystem types supported: The filesystem types which are currently supported include adfs, affs, autofs, cifs, coda, coherent, cramfs, debugfs, devpts, efs, ext, ext2, ext3, ext4, hfs, hfsplus, hpfs, iso9660, jfs, minix, msdos, ncpfs, nfs, nfs4, ntfs, proc, qnx4, ramfs, reiserfs, romfs, squashfs, smbfs, sysv, tmpfs, ubifs, udf, ufs, umsdos, usbfs, vfat, xenix, xfs, xiafs.
+
+*A new image tag was created "v4" for the users who needed a ready to go nfs4 client without setting ENVIRONMENT variables.*
 
 ## ENVIRONMENT
 
 - `SERVER` - the hostname or IP of the NFS server to connect to
 - `SHARE` - the NFS shared path to mount
-- `MOUNT_OPTIONS` - mount options to mount the NFS share with
-- `FSTYPE` - the filesystem type; specify `nfs4` for NFSv4, default is `nfs3`
+- `MOUNT_OPTIONS` - mount options to mount the NFS share with; the default is `nfsvers=3` on d3fk/nfs-client:latest and `nfsvers=4` on d3fk/nfs-client:v4
+- `FSTYPE` - the filesystem type; default is `nfs` in d3fk/nfs-client:latest for NFS3 mount, and default is `nfs4` in d3fk/nfs-client:v4
 - `MOUNTPOINT` - the mount point for the NFS share within the container (default is /mnt/nfs-1)
 
 ## Usage
@@ -74,6 +107,7 @@ ie:
 
 
 
+[![GitHub license](https://img.shields.io/github/license/Angatar/nfs-client)](https://github.com/Angatar/nfs-client/blob/master/LICENSE)
 
 
 License
