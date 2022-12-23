@@ -16,7 +16,7 @@ LABEL org.opencontainers.image.authors="d3fk"
 #             -e SERVER=192.168.0.9 \
 #             -e SHARE=movies \
 #             -e MOUNT_OPTIONS="nfsvers=3,ro" \
-#             -e FSTYPE=nfs3 \
+#             -e FSTYPE=nfs \
 #             -e MOUNTPOINT=/mnt/host/mnt/nfs-1 \
 #                nfs-client
 
