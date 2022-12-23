@@ -1,4 +1,5 @@
 FROM alpine:latest
+LABEL org.opencontainers.image.authors="d3fk"
 
 # USAGE
 # $ docker build -t nfs-client .
