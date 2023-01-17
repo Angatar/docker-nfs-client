@@ -1,5 +1,7 @@
 FROM alpine:latest
 LABEL org.opencontainers.image.authors="d3fk"
+LABEL org.opencontainers.image.source="https://github.com/Angatar/docker-nfs-client.git"
+LABEL org.opencontainers.image.url="https://github.com/Angatar/docker-nfs-client"
 
 # USAGE
 # $ docker build -t nfs-client .
@@ -25,7 +27,7 @@ ENV FSTYPE nfs4
 ENV MOUNT_OPTIONS nfsvers=4
 ENV MOUNTPOINT /mnt/nfs-1
 
-RUN apk upgrade && apk add --no-cache nfs-utils \
+RUN apk upgrade --no-cache && apk add --no-cache nfs-utils \
 # https://github.com/rancher/os/issues/641#issuecomment-157006575
     && rm /sbin/halt /sbin/poweroff /sbin/reboot
 
